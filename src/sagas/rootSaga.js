@@ -1,7 +1,6 @@
-// import { watchSoccerSaga } from "./soccerSaga";
+import { soccerSaga } from "./soccerSaga";
 import { all } from "redux-saga/effects";
 
 export default function* rootSaga() {
-  console.log("sd");
-  //   yield all([watchSoccerSaga()]);
+  yield all([soccerSaga()]);
 }

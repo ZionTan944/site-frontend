@@ -1,0 +1,63 @@
+@import "navBar.css";
+@import "soccerTableDisplay.css";
+@import "soccerDash.css";
+
+body {
+	margin: 0;
+	font-size: 1em;
+	height: 100%;
+}
+.root {
+	margin-top: 3em;
+}
+/* Colors */
+/* 0b0c10
+  1f2833
+  c5c6c7
+  66fcf1
+  45a29e */
+.main-color,
+.main-color-hover {
+	background-color: #0b0c10;
+	color: #66fcf1;
+}
+.main-color-hover:hover {
+	background-color: #45a29e;
+	color: #66fcf1;
+}
+
+.success-green,
+.success-green-hover {
+	background-color: rgb(7, 202, 0);
+	color: white;
+}
+.success-green-hover:hover {
+	background-color: rgb(8, 177, 2);
+}
+.error-red,
+.error-red-hover {
+	background-color: rgb(214, 1, 1);
+	color: white;
+}
+.error-red-hover:hover {
+	background-color: rgb(187, 6, 6);
+}
+/* Text */
+.extra-small-text {
+	font-size: 0.5em;
+}
+.small-text {
+	font-size: 0.8em;
+}
+.large-text {
+	font-size: 1.5em;
+}
+/* Layout */
+.parent-div {
+	display: flex;
+}
+.left-child,
+.right-child {
+	width: 50%;
+	overflow: auto;
+}
