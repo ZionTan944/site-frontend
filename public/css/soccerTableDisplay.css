@@ -36,12 +36,6 @@
 	padding: 0.3em;
 }
 
-.team:hover,
-.team.hover,
-.team.End {
-	background-color: rgba(176, 176, 176, 0.5);
-}
-
 .rank1 {
 	color: rgb(201, 146, 6);
 }

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import soccerLeagueReducer from "./soccerReducer";
+import soccerLeagueReducer from "./soccerLeagueReducer";
+import soccerTeamReducer from "./soccerTeamReducer";
 
 const rootReducer = combineReducers({
-  soccerReducer: soccerLeagueReducer,
-  //   renderReducer: renderReducer,
-  //   teamReducer: teamReducer,
+	soccerLeague: soccerLeagueReducer,
+	soccerTeam: soccerTeamReducer,
 });
 
 export default rootReducer;

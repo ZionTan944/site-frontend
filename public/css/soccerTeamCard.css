@@ -1,0 +1,46 @@
+/* Team Display */
+.team-name {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 1em;
+}
+.card-team-logo {
+	margin-left: 1em;
+	vertical-align: middle;
+}
+.team-display-card {
+	display: inline-block;
+	width: 70%;
+	background-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+	color: black;
+	border-radius: 1em;
+	margin-top: 7.5em;
+}
+
+.team-display-card:hover {
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
+}
+
+.team-display-card-container {
+	margin: 0 1em 1em 1em;
+	border: 1px solid black;
+	border-radius: 0.5em;
+	width: 90%;
+}
+.team-schedule-table {
+	border-collapse: collapse;
+}
+.team-schedule-row {
+	border: 1px solid black;
+	height: 1em;
+}
+.card-data-row {
+	margin: 0.3em;
+}
+.card-body-header {
+	margin: 0 0 0 1em;
+}
+.last-matches-header {
+	display: inline-block;
+}

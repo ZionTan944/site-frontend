@@ -1,14 +1,14 @@
 @import "navBar.css";
 @import "soccerTableDisplay.css";
 @import "soccerDash.css";
+@import "soccerTeamCard.css";
 
 body {
 	margin: 0;
 	font-size: 1em;
 	height: 100%;
-}
-.root {
-	margin-top: 3em;
+	background-color: #1f2833;
+	color: #c5c6c7;
 }
 /* Colors */
 /* 0b0c10
@@ -28,19 +28,24 @@ body {
 
 .success-green,
 .success-green-hover {
-	background-color: rgb(7, 202, 0);
-	color: white;
+	background-color: rgb(10, 204, 4);
 }
 .success-green-hover:hover {
-	background-color: rgb(8, 177, 2);
+	background-color: rgb(5, 165, 0);
 }
 .error-red,
 .error-red-hover {
-	background-color: rgb(214, 1, 1);
-	color: white;
+	background-color: rgb(226, 2, 2);
 }
 .error-red-hover:hover {
-	background-color: rgb(187, 6, 6);
+	background-color: rgb(197, 0, 0);
+}
+.null-gray,
+.null-gray-hover {
+	background-color: #b0b0b0;
+}
+.null-gray-hover:hover {
+	background-color: #7c7c7c;
 }
 /* Text */
 .extra-small-text {
@@ -52,6 +57,10 @@ body {
 .large-text {
 	font-size: 1.5em;
 }
+.text-white {
+	color: white;
+}
+
 /* Layout */
 .parent-div {
 	display: flex;
@@ -60,4 +69,42 @@ body {
 .right-child {
 	width: 50%;
 	overflow: auto;
+}
+.upper-child,
+.lower-child {
+	height: 50%;
+	overflow: auto;
+}
+.text-centre {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+.text-right {
+	text-align: right;
+	justify-content: right;
+	vertical-align: middle;
+	align-items: center;
+}
+.text-left {
+	text-align: left;
+	vertical-align: middle;
+}
+.float-right {
+	float: right;
+}
+.float-left {
+	float: left;
+}
+/* shapes */
+.circle {
+	border-radius: 50%;
+	display: inline-flex;
+	height: 2em;
+	width: 2em;
+	/* float: left; */
+}
+/* border */
+.border {
+	border: 1px solid black;
 }

@@ -29,8 +29,20 @@ export function* getLeagueName() {
 	yield put({ type: soccerActionTypes.SET_LEAGUE_NAME, result: data });
 }
 
+export function* getTeamData(request) {
+	const data = yield fetch(
+		"http://127.0.0.1:8000/soccer_league/get_team_data/",
+		{
+			method: "POST",
+			body: JSON.stringify({ teamName: request.data }),
+		}
+	).then((response) => response.json());
+	yield put({ type: soccerActionTypes.SET_TEAM_DATA, result: data });
+}
+
 export function* soccerSaga() {
 	yield takeEvery(soccerActionTypes.RUN_SOCCER_LEAGUE, runSoccerLeague);
 	yield takeEvery(soccerActionTypes.RESTART_SOCCER_LEAGUE, restartSoccerLeague);
 	yield takeEvery(soccerActionTypes.GET_LEAGUE_NAME, getLeagueName);
+	yield takeEvery(soccerActionTypes.GET_TEAM_DATA, getTeamData);
 }

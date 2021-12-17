@@ -6,14 +6,15 @@ import soccerActionTypes from "../actions/soccerActions";
 function TableDisplay() {
 	var dispatch = useDispatch();
 
-	const tableData = useSelector((state) => state.soccerReducer.leagueData);
-	const matchWeek = useSelector((state) => state.soccerReducer.matchWeek);
+	const tableData = useSelector((state) => state.soccerLeague.leagueData);
+	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
 
 	useEffect(() => {
 		dispatch({
 			type: soccerActionTypes.RESTART_SOCCER_LEAGUE,
 		});
 	}, [dispatch]);
+
 	var tableHeaders = [
 		"#",
 		"",
@@ -28,6 +29,12 @@ function TableDisplay() {
 		"Points",
 		"",
 	];
+	function setSelectedTeam(team) {
+		dispatch({
+			type: soccerActionTypes.SET_SELECTED_TEAM,
+			data: team,
+		});
+	}
 	function renderLeagueDataForRow(teamData) {
 		var newTeamData = addItemInArray(teamData, 1, "img");
 		return newTeamData.map((teamStats, i) => {
@@ -38,8 +45,8 @@ function TableDisplay() {
 							className="team-logo-card"
 							src={"soccer_images/" + newTeamData[2] + ".png"}
 							alt=""
-							height="20"
-							width="20"
+							height="40"
+							width="40"
 						/>
 					</td>
 				);
@@ -48,11 +55,21 @@ function TableDisplay() {
 			}
 		});
 	}
+	function returnLeagueHoverClass(place) {
+		if (["1", "18", "19", "20"].includes(place)) {
+			return "rank" + place;
+		}
+		return "null-gray-hover";
+	}
+
 	function renderLeagueTableData(teamData) {
 		return (
 			<tr
 				key={"league-table-row" + tableData.indexOf(teamData)}
-				className={"league-table-row team rank" + teamData[0].toString()}
+				className={
+					"league-table-row " + returnLeagueHoverClass(teamData[0].toString())
+				}
+				onClick={() => setSelectedTeam(teamData[1])}
 			>
 				{renderLeagueDataForRow(teamData)}
 			</tr>
@@ -73,7 +90,7 @@ function TableDisplay() {
 		if (matchWeek < 42) {
 			return (
 				<button
-					className="proceed-button success-green-hover"
+					className="proceed-button success-green-hover text-white"
 					onClick={() => proceedButtonClicked()}
 				>
 					Continue
@@ -89,7 +106,7 @@ function TableDisplay() {
 
 			{renderButton()}
 			<button
-				className="restart-button error-red-hover"
+				className="restart-button error-red-hover text-white"
 				onClick={() => restartButtonClicked()}
 			>
 				Restart

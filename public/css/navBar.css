@@ -1,9 +1,10 @@
 ul.nav {
 	list-style-type: none;
 	margin: 0;
+	padding: 0;
 	overflow: hidden;
 	border: 1px solid #66fcf1;
-	position: fixed;
+	position: sticky;
 	width: 100%;
 	top: 0;
 }
@@ -41,7 +42,7 @@ li.nav-item {
 
 .dropdown-content {
 	display: none;
-	position: absolute;
+	position: fixed;
 	min-width: 7em;
 }
 
