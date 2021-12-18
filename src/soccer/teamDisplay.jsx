@@ -70,7 +70,7 @@ function TeamDisplay() {
 				{selectedSchedule.map((match) => {
 					return (
 						<div
-							key={match.result + match.opponent}
+							key={match.opponent}
 							className={
 								"card-data-row circle small-text text-centre " +
 								returnMatchResult(match.result)

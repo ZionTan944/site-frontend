@@ -1,3 +1,7 @@
+@import "soccerTableDisplay.css";
+@import "soccerTeamCard.css";
+@import "soccerMatchDisplay.css";
+
 .soccer-display {
 	height: 100%;
 	width: 100%;

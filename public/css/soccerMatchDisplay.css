@@ -1,0 +1,17 @@
+.match-result-table {
+	border-spacing: 10em;
+	border-collapse: collapse;
+	border: 1px solid black;
+	background-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+	color: black;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.match-result-table:hover {
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
+}
+.match-card-header {
+	margin: 0.5em 0 0.5em 1em;
+}

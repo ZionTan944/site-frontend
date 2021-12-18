@@ -77,7 +77,9 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 		var matchData = returnFormatedTeamData(match, teamName, teamInt);
 		return (
 			<>
-				<td className={"text-left " + matchData.homeResult}>
+				<td
+					className={"text-left team-name-table-data " + matchData.homeResult}
+				>
 					<img
 						className="team-logo-card"
 						src={"soccer_images/" + matchData.homeTeam + ".png"}
@@ -88,7 +90,9 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 					{matchData.homeTeamName}
 				</td>
 				{renderScoreLine(matchData)}
-				<td className={"text-right " + matchData.awayResult}>
+				<td
+					className={"text-right team-name-table-data " + matchData.awayResult}
+				>
 					{matchData.awayTeamName}
 					<img
 						className="team-logo-card"
@@ -108,14 +112,11 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 		if (matchWeek > 5) {
 			selectedSchedule = schedule.slice(matchWeek - 5, matchWeek);
 		}
-		console.log(matchWeek, matchWeek - 5);
 		return selectedSchedule.map((match, index) => {
 			return (
-				<>
-					<tr key={index} className="text-centre team-schedule-row">
-						{renderTeamScheduleForRow(match)}
-					</tr>
-				</>
+				<tr key={index} className="text-centre team-schedule-row">
+					{renderTeamScheduleForRow(match)}
+				</tr>
 			);
 		});
 	}

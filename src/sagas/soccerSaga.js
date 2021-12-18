@@ -6,7 +6,10 @@ export function* runSoccerLeague() {
 	const data = yield fetch("http://127.0.0.1:8000/soccer_league/run_league/", {
 		method: "POST",
 	}).then((response) => response.json());
-	yield put({ type: soccerActionTypes.SET_LEAGUE_DISPLAY, result: data });
+	yield put({
+		type: soccerActionTypes.SET_LEAGUE_DISPLAY,
+		result: data,
+	});
 }
 
 export function* restartSoccerLeague() {
@@ -16,7 +19,7 @@ export function* restartSoccerLeague() {
 			method: "POST",
 		}
 	).then((response) => response.json());
-	yield put({ type: soccerActionTypes.SET_LEAGUE_DISPLAY, result: data });
+	yield put({ type: soccerActionTypes.SET_LEAGUE_DISPLAY_INIT, result: data });
 }
 
 export function* getLeagueName() {

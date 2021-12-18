@@ -1,7 +1,5 @@
 @import "navBar.css";
-@import "soccerTableDisplay.css";
 @import "soccerDash.css";
-@import "soccerTeamCard.css";
 
 body {
 	margin: 0;

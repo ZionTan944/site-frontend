@@ -5,6 +5,7 @@ import { GiSoccerBall } from "react-icons/gi";
 
 import TableDisplay from "./tableDisplay";
 import TeamDisplay from "./teamDisplay";
+import MatchDisplay from "./matchDisplay";
 
 function SoccerDash() {
 	var dispatch = useDispatch();
@@ -27,12 +28,8 @@ function SoccerDash() {
 					<TableDisplay />
 				</div>
 				<div className="right-child">
-					<div className="upper-child">
-						<TeamDisplay />
-					</div>
-					<div className="lower-child">
-						<p>MatchDisplay</p>
-					</div>
+					<TeamDisplay />
+					<MatchDisplay />
 				</div>
 			</div>
 		</div>
