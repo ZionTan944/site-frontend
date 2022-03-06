@@ -126,13 +126,13 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 		if (schedule.length === matchWeek) {
 			nextMatch = "End of Season";
 		} else if (schedule[matchWeek].opponent === "RES") {
-			nextMatch = "No game scheduled";
+			nextMatch = "Next Week: No game scheduled";
 		} else {
-			nextMatch = schedule[matchWeek].opponent_name;
+			nextMatch = "Next Week: " + schedule[matchWeek].opponent_name;
 		}
 		return (
 			<>
-				<td colSpan="5">Next Week: {nextMatch}</td>
+				<td colSpan="5">{nextMatch}</td>
 				<td className="border">
 					<BiDownArrow
 						className="float-right"

@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import soccerActionTypes from "../actions/soccerActions";
-import { returnWithPlacingSuffix } from "../utils/utilFunctions";
+import { GiCancel } from "react-icons/gi";
 
+import { returnWithPlacingSuffix } from "../utils/utilFunctions";
 import SoccerTeamSchedule from "./soccerTeamSchedule";
 
-function TeamDisplay() {
+function TeamDisplay({ setIsTeamCardVisible }) {
 	var dispatch = useDispatch();
 	const leagueData = useSelector((state) => state.soccerLeague.leagueData);
 	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
@@ -89,16 +90,20 @@ function TeamDisplay() {
 	}
 	return (
 		<>
-			<div className="team-display-card">
+			<div className="team-display-card border">
 				<div className="team-display-card-header">
 					<img
 						className="card-team-logo"
-						src={"soccer_images/" + selectedTeam + ".png"}
+						src={"soccer_images/" + teamData.team_int + ".png"}
 						alt="Logo"
 						height="50"
 						width="50"
 					/>
-					<h2 className="team-name"> {teamData.name}</h2>
+					<h2 className="team-name">{selectedTeam}</h2>
+					<GiCancel
+						className="float-right cancel-icon"
+						onClick={() => setIsTeamCardVisible(false)}
+					/>
 				</div>
 				<div className="card-body">
 					<div className="team-display-card-container">
@@ -140,8 +145,8 @@ function TeamDisplay() {
 					<p className="card-body-header">Team Schedule:</p>
 					<SoccerTeamSchedule
 						schedule={schedule}
-						teamName={teamData.name}
-						teamInt={selectedTeam}
+						teamName={selectedTeam}
+						teamInt={teamData.team_int}
 					/>
 				</div>
 			</div>

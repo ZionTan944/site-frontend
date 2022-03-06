@@ -1,9 +1,8 @@
-import { addItemInArray } from "../utils/utilFunctions";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import soccerActionTypes from "../actions/soccerActions";
 
-function TableDisplay() {
+function TableDisplay({ setIsTeamCardVisible }) {
 	var dispatch = useDispatch();
 
 	const tableData = useSelector((state) => state.soccerLeague.leagueData);
@@ -15,35 +14,34 @@ function TableDisplay() {
 		});
 	}, [dispatch]);
 
-	var tableHeaders = [
-		"#",
-		"",
-		"Team",
-		"GP",
-		"Wins",
-		"Draws",
-		"Losses",
-		"GF",
-		"GA",
-		"GD",
-		"Points",
-		"",
-	];
+	var tableHeaders = {
+		Placing: "#",
+		Team: "Team",
+		GP: "Games Played",
+		W: "Wins",
+		D: "Draws",
+		L: "Losses",
+		GF: "Goals For",
+		GA: "Goals Against",
+		GD: "Goal Difference",
+		Points: "Points",
+		"-": "Team Movement",
+	};
 	function setSelectedTeam(team) {
 		dispatch({
 			type: soccerActionTypes.SET_SELECTED_TEAM,
 			data: team,
 		});
+		setIsTeamCardVisible(true);
 	}
 	function renderLeagueDataForRow(teamData) {
-		var newTeamData = addItemInArray(teamData, 1, "img");
-		return newTeamData.map((teamStats, i) => {
+		return teamData.map((teamStats, i) => {
 			if (i === 1) {
 				return (
 					<td key={i}>
 						<img
 							className="team-logo-card"
-							src={"soccer_images/" + newTeamData[2] + ".png"}
+							src={"soccer_images/" + teamData[2] + ".png"}
 							alt=""
 							height="40"
 							width="40"
@@ -113,12 +111,35 @@ function TableDisplay() {
 			</button>
 
 			<div>
-				<table className="league-table large-text">
+				<table className="league-table normal-text">
 					<thead key="league-table-header">
 						<tr>
-							{tableHeaders.map((header, index) => (
-								<th key={"league-table-header" + index}>{header}</th>
-							))}
+							{/* {tableHeaders.map((header, index) => (
+								<th key={"league-table-header" + index} title="">
+									{header}
+								</th>
+							))} */}
+							{Object.keys(tableHeaders).map((key, index) => {
+								if (key === "Team") {
+									return (
+										<th
+											colspan={2}
+											key={"league-table-header" + index}
+											title={tableHeaders[key]}
+										>
+											{key}
+										</th>
+									);
+								}
+								return (
+									<th
+										key={"league-table-header" + index}
+										title={tableHeaders[key]}
+									>
+										{key}
+									</th>
+								);
+							})}
 						</tr>
 					</thead>
 					<tbody>

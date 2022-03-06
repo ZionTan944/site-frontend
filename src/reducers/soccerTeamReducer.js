@@ -16,8 +16,8 @@ const soccerTeamReducer = (state = initState, action) => {
 	} else if (action.type === soccerActionTypes.SET_TEAM_DATA) {
 		return {
 			...state,
-			selectedTeamData: action.result.teamdata,
-			selectedTeamSchedule: action.result.teamschedule,
+			selectedTeamData: action.result.team_data,
+			selectedTeamSchedule: action.result.schedule,
 			loading: false,
 		};
 	} else if (action.type === soccerActionTypes.SET_SELECTED_TEAM) {

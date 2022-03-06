@@ -5,8 +5,9 @@
 	background-color: rgba(255, 255, 255, 0.7);
 	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
 	color: black;
-	width: 100%;
-	margin-bottom: 1em;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .match-result-table:hover {
@@ -14,4 +15,8 @@
 }
 .match-card-header {
 	margin: 0.5em 0 0.5em 1em;
+}
+.match-display-card {
+	margin-top: 7.5em;
+	margin-bottom: 5em;
 }

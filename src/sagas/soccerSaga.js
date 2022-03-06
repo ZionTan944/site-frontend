@@ -2,8 +2,10 @@
 import soccerActionTypes from "../actions/soccerActions";
 import { takeEvery, put } from "redux-saga/effects";
 
+const apiUrl = " http://192.168.1.69:8080/";
+
 export function* runSoccerLeague() {
-	const data = yield fetch("http://127.0.0.1:8000/soccer_league/run_league/", {
+	const data = yield fetch(apiUrl + "soccer_league/run", {
 		method: "POST",
 	}).then((response) => response.json());
 	yield put({
@@ -13,33 +15,24 @@ export function* runSoccerLeague() {
 }
 
 export function* restartSoccerLeague() {
-	const data = yield fetch(
-		"http://127.0.0.1:8000/soccer_league/start_league/",
-		{
-			method: "POST",
-		}
-	).then((response) => response.json());
+	const data = yield fetch(apiUrl + "soccer_league/reset", {
+		method: "POST",
+	}).then((response) => response.json());
 	yield put({ type: soccerActionTypes.SET_LEAGUE_DISPLAY_INIT, result: data });
 }
 
 export function* getLeagueName() {
-	const data = yield fetch(
-		"http://127.0.0.1:8000/soccer_league/get_league_name/",
-		{
-			method: "POST",
-		}
-	).then((response) => response.json());
+	const data = yield fetch(apiUrl + "soccer_league/get_league_name", {
+		method: "POST",
+	}).then((response) => response.json());
 	yield put({ type: soccerActionTypes.SET_LEAGUE_NAME, result: data });
 }
 
 export function* getTeamData(request) {
-	const data = yield fetch(
-		"http://127.0.0.1:8000/soccer_league/get_team_data/",
-		{
-			method: "POST",
-			body: JSON.stringify({ teamName: request.data }),
-		}
-	).then((response) => response.json());
+	const data = yield fetch(apiUrl + "soccer_league/get_team", {
+		method: "POST",
+		body: JSON.stringify({ team_name: request.data }),
+	}).then((response) => response.json());
 	yield put({ type: soccerActionTypes.SET_TEAM_DATA, result: data });
 }
 

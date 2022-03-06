@@ -5,23 +5,32 @@ body {
 	margin: 0;
 	font-size: 1em;
 	height: 100%;
-	background-color: #1f2833;
-	color: #c5c6c7;
+	background-color: #f9627d;
+	color: #0b0c10;
 }
 /* Colors */
-/* 0b0c10
-  1f2833
-  c5c6c7
-  66fcf1
-  45a29e */
+/* D3F8E2
+  9B9ECE
+  F9627D
+  051014
+  c99efa */
+.active {
+	background-color: #9e89fc;
+	color: #0b0c10;
+}
+.active:hover {
+	background-color: #8e76fc;
+	color: #0b0c10;
+}
+
 .main-color,
 .main-color-hover {
-	background-color: #0b0c10;
-	color: #66fcf1;
+	background-color: #9b9ece;
+	color: #051014;
 }
 .main-color-hover:hover {
-	background-color: #45a29e;
-	color: #66fcf1;
+	background-color: #9195ce;
+	color: #051014;
 }
 
 .success-green,
@@ -40,17 +49,42 @@ body {
 }
 .null-gray,
 .null-gray-hover {
-	background-color: #b0b0b0;
+	background-color: #aaaaaa;
 }
 .null-gray-hover:hover {
-	background-color: #7c7c7c;
+	background-color: #919191;
 }
+.success-light-green,
+.success-light-green-hover {
+	background-color: rgb(116, 255, 111);
+}
+.success-light-green-hover:hover {
+	background-color: rgb(62, 255, 56);
+}
+.error-light-red,
+.error-light-red-hover {
+	background-color: rgb(255, 115, 115);
+}
+.error-light-red-hover:hover {
+	background-color: rgb(255, 73, 73);
+}
+.null-light-gray,
+.null-light-gray-hover {
+	background-color: #cacaca;
+}
+.null-light-gray-hover:hover {
+	background-color: #9c9c9c;
+}
+
 /* Text */
 .extra-small-text {
 	font-size: 0.5em;
 }
 .small-text {
 	font-size: 0.8em;
+}
+.normal-text {
+	font-size: 1.2em;
 }
 .large-text {
 	font-size: 1.5em;
@@ -87,6 +121,9 @@ body {
 .text-left {
 	text-align: left;
 	vertical-align: middle;
+}
+.text-top {
+	vertical-align: top;
 }
 .float-right {
 	float: right;

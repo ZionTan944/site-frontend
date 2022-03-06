@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import soccerActionTypes from "../actions/soccerActions";
 
-function MatchDisplay() {
+function MatchDisplay({ setIsTeamCardVisible }) {
 	const dispatch = useDispatch();
 
 	const matchResults = useSelector((state) => state.soccerLeague.matchResults);
@@ -10,20 +10,20 @@ function MatchDisplay() {
 	const matchHeaders = ["Home", "-", "VS", "-", "Away"];
 
 	function setSelectedTeam(team) {
-		console.log("a");
 		dispatch({
 			type: soccerActionTypes.SET_SELECTED_TEAM,
 			data: team,
 		});
+		setIsTeamCardVisible(true);
 	}
 
 	function returnMatchResult(goalsFor, goalsAway) {
 		if (goalsFor > goalsAway) {
-			return "success-green-hover";
+			return "success-light-green-hover";
 		} else if (goalsFor < goalsAway) {
-			return "error-red-hover";
+			return "error-light-red-hover";
 		} else {
-			return "null-gray-hover";
+			return "null-light-gray-hover";
 		}
 	}
 
@@ -35,7 +35,7 @@ function MatchDisplay() {
 						"text-left team-name-table-data " +
 						returnMatchResult(matchData.home_goals, matchData.away_goals)
 					}
-					onClick={() => setSelectedTeam(matchData.home_team)}
+					onClick={() => setSelectedTeam(matchData.home_team_name)}
 				>
 					<img
 						className="team-logo-card"
@@ -54,7 +54,7 @@ function MatchDisplay() {
 						"text-right team-name-table-data " +
 						returnMatchResult(matchData.away_goals, matchData.home_goals)
 					}
-					onClick={() => setSelectedTeam(matchData.away_team)}
+					onClick={() => setSelectedTeam(matchData.away_team_name)}
 				>
 					{matchData.away_team_name}
 					<img
@@ -78,11 +78,10 @@ function MatchDisplay() {
 	}
 
 	if (Object.keys(matchResults).length === 0) {
-		return null;
+		return <div className="match-display-card"></div>;
 	}
-
 	return (
-		<div className="team-display-card">
+		<div className="team-display-card match-display-card border">
 			<p className="match-card-header">Match Results: Week {matchWeek}</p>
 			<table className="match-result-table null-gray">
 				<thead>

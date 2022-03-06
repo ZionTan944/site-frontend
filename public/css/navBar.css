@@ -3,29 +3,30 @@ ul.nav {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	border: 1px solid #66fcf1;
+	border-bottom: 1px solid #051014;
 	position: sticky;
 	width: 100%;
 	top: 0;
 }
 
-li.nav-item {
+.nav-item {
 	float: left;
 	height: 3em;
 }
 
 .nav-link {
-	color: #66fcf1;
+	/* color: #66fcf1; */
 	display: block;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
 	cursor: context-menu;
+	height: 100%;
 }
 
 .logo {
-	max-height: 100%;
-	border: 1px solid #66fcf1;
+	/* max-height: 100%; */
+	border-right: 1px solid #f9627d;
 }
 
 .dropdown {
@@ -47,7 +48,7 @@ li.nav-item {
 }
 
 .dropdown-content a {
-	color: #66fcf1;
+	color: #051014;
 	padding: 10px 16px;
 	text-decoration: none;
 	display: block;
