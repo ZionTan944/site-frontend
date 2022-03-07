@@ -36,41 +36,29 @@
 	padding: 0.5em;
 }
 
-.rank1 {
+.ranktoplevel {
 	color: rgb(201, 146, 6);
 }
-.rank1:hover,
-.rank1.hover,
-.rank1.End {
+.ranktoplevel:hover,
+.ranktoplevel.End {
 	background-color: rgba(255, 183, 0, 0.7);
 	color: rgb(170, 122, 0);
 }
 
-.rank2,
-.rank3,
-.rank4 {
+.ranksecondlevel {
 	color: rgb(5, 180, 5);
 }
 
-.rank5 {
+.rankthirdlevel {
 	color: rgb(7, 7, 190);
 }
 
-.rank18,
-.rank19,
-.rank20 {
+.rankrelegation {
 	color: rgb(255, 0, 0);
 }
 
-.rank18:hover,
-.rank19:hover,
-.rank20:hover,
-.rank18.hover,
-.rank19.hover,
-.rank20.hover,
-.rank18.End,
-.rank19.End,
-.rank20.End {
+.rankrelegation:hover,
+.rankrelegation.End {
 	color: rgb(134, 0, 0);
 	background-color: rgba(255, 0, 0, 0.7);
 }

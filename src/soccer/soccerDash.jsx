@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import soccerActionTypes from "../actions/soccerActions";
 import { GiSoccerBall } from "react-icons/gi";
 
@@ -10,14 +10,15 @@ import MatchDisplay from "./matchDisplay";
 function SoccerDash() {
 	var dispatch = useDispatch();
 	var [isTeamCardVisible, setIsTeamCardVisible] = useState(false);
+	var [selectedLeague, setSelectedLeague] = useState(1);
 
 	useEffect(() => {
 		dispatch({
-			type: soccerActionTypes.GET_LEAGUE_NAME,
+			type: soccerActionTypes.RESTART_SOCCER_LEAGUE,
+			data: selectedLeague,
 		});
-	}, [dispatch]);
-
-	const leagueName = useSelector((state) => state.soccerLeague.leagueName);
+		setIsTeamCardVisible(false);
+	}, [dispatch, selectedLeague]);
 
 	function renderTeamDisplay(isTeamCardVisible) {
 		if (isTeamCardVisible) {
@@ -27,17 +28,31 @@ function SoccerDash() {
 	}
 
 	return (
-		<div className="soccer-display">
-			<h1>
-				<GiSoccerBall /> Soccer Simulator: {leagueName}
-			</h1>
-			<div className="parent-div">
-				<div className="left-child">
-					<TableDisplay setIsTeamCardVisible={setIsTeamCardVisible} />
-				</div>
-				<div className="right-child">
-					<MatchDisplay setIsTeamCardVisible={setIsTeamCardVisible} />
-					{renderTeamDisplay(isTeamCardVisible)}
+		<div>
+			<div className="soccer-display">
+				<label htmlFor="league" className="header-1 soccer-header">
+					<GiSoccerBall /> Soccer League Simulator:
+				</label>
+				<select
+					className="soccer-select header-1 sec-color-hover"
+					name="league"
+					id="league"
+					onChange={(event) => setSelectedLeague(event.target.value)}
+				>
+					<option value="1">English Premier League</option>
+					<option value="2">English Football League</option>
+				</select>
+				<div className="parent-div">
+					<div className="left-child">
+						<TableDisplay
+							setIsTeamCardVisible={setIsTeamCardVisible}
+							selectedLeague={selectedLeague}
+						/>
+					</div>
+					<div className="right-child">
+						<MatchDisplay setIsTeamCardVisible={setIsTeamCardVisible} />
+						{renderTeamDisplay(isTeamCardVisible)}
+					</div>
 				</div>
 			</div>
 		</div>

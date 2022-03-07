@@ -14,18 +14,12 @@ export function* runSoccerLeague() {
 	});
 }
 
-export function* restartSoccerLeague() {
+export function* restartSoccerLeague(request) {
 	const data = yield fetch(apiUrl + "soccer_league/reset", {
 		method: "POST",
+		body: JSON.stringify({ league_id: request.data }),
 	}).then((response) => response.json());
 	yield put({ type: soccerActionTypes.SET_LEAGUE_DISPLAY_INIT, result: data });
-}
-
-export function* getLeagueName() {
-	const data = yield fetch(apiUrl + "soccer_league/get_league_name", {
-		method: "POST",
-	}).then((response) => response.json());
-	yield put({ type: soccerActionTypes.SET_LEAGUE_NAME, result: data });
 }
 
 export function* getTeamData(request) {
@@ -39,6 +33,5 @@ export function* getTeamData(request) {
 export function* soccerSaga() {
 	yield takeEvery(soccerActionTypes.RUN_SOCCER_LEAGUE, runSoccerLeague);
 	yield takeEvery(soccerActionTypes.RESTART_SOCCER_LEAGUE, restartSoccerLeague);
-	yield takeEvery(soccerActionTypes.GET_LEAGUE_NAME, getLeagueName);
 	yield takeEvery(soccerActionTypes.GET_TEAM_DATA, getTeamData);
 }

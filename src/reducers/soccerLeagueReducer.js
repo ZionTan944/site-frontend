@@ -5,6 +5,8 @@ const initState = {
 	matchWeek: 0,
 	leagueName: "",
 	matchResults: [],
+	seasonLength: 0,
+	leagueMeta: {},
 };
 
 const soccerLeagueReducer = (state = initState, action) => {
@@ -14,6 +16,8 @@ const soccerLeagueReducer = (state = initState, action) => {
 			leagueData: action.result.league_table,
 			matchWeek: action.result.match_week,
 			matchResults: [],
+			seasonLength: action.result.total_weeks,
+			leagueMeta: action.result.meta,
 		};
 	} else if (action.type === soccerActionTypes.SET_LEAGUE_DISPLAY) {
 		return {
@@ -21,11 +25,6 @@ const soccerLeagueReducer = (state = initState, action) => {
 			leagueData: action.result.league_table,
 			matchWeek: action.result.match_week,
 			matchResults: action.result.match_results,
-		};
-	} else if (action.type === soccerActionTypes.SET_LEAGUE_NAME) {
-		return {
-			...state,
-			leagueName: action.result.league_name,
 		};
 	} else {
 		return { ...state };

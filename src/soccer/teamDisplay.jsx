@@ -18,6 +18,15 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 	const schedule = useSelector(
 		(state) => state.soccerTeam.selectedTeamSchedule
 	);
+
+	function setSelectedTeam(team) {
+		dispatch({
+			type: soccerActionTypes.SET_SELECTED_TEAM,
+			data: team,
+		});
+		setIsTeamCardVisible(true);
+	}
+
 	const cardHeaders = {
 		gp: "GP",
 		place: "Place",
@@ -40,11 +49,11 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 	function returnMatchResult(result) {
 		switch (result) {
 			case (result = "W"):
-				return "success-green";
+				return "success-light-green";
 			case (result = "L"):
-				return "error-red";
+				return "error-light-red";
 			default:
-				return "null-gray";
+				return "null-light-gray";
 		}
 	}
 
@@ -76,6 +85,9 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 								"card-data-row circle small-text text-centre " +
 								returnMatchResult(match.result)
 							}
+							onClick={() => {
+								setSelectedTeam(teamData[1]);
+							}}
 						>
 							{match.result}
 						</div>

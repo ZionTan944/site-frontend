@@ -14,3 +14,10 @@ h2 {
 h1 {
 	margin-left: 0.8em;
 }
+.soccer-select {
+	background: transparent;
+	border: none;
+}
+.soccer-header {
+	margin-left: 0.8em;
+}

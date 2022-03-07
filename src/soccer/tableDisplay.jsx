@@ -1,18 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import soccerActionTypes from "../actions/soccerActions";
 
-function TableDisplay({ setIsTeamCardVisible }) {
+function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 	var dispatch = useDispatch();
 
 	const tableData = useSelector((state) => state.soccerLeague.leagueData);
 	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
-
-	useEffect(() => {
-		dispatch({
-			type: soccerActionTypes.RESTART_SOCCER_LEAGUE,
-		});
-	}, [dispatch]);
+	const seasonLength = useSelector((state) => state.soccerLeague.seasonLength);
+	const leagueMeta = useSelector((state) => state.soccerLeague.leagueMeta);
 
 	var tableHeaders = {
 		Placing: "#",
@@ -54,10 +49,15 @@ function TableDisplay({ setIsTeamCardVisible }) {
 		});
 	}
 	function returnLeagueHoverClass(place) {
-		if (["1", "18", "19", "20"].includes(place)) {
-			return "rank" + place;
+		if (leagueMeta.top.includes(parseInt(place))) {
+			return "ranktoplevel";
+		} else if (leagueMeta.second.includes(parseInt(place))) {
+			return "ranksecondlevel";
+		} else if (leagueMeta.third.includes(parseInt(place))) {
+			return "rankthirdlevel";
+		} else if (leagueMeta.relegation.includes(parseInt(place))) {
+			return "rankrelegation";
 		}
-		return "null-gray-hover";
 	}
 
 	function renderLeagueTableData(teamData) {
@@ -81,11 +81,13 @@ function TableDisplay({ setIsTeamCardVisible }) {
 	function restartButtonClicked() {
 		dispatch({
 			type: soccerActionTypes.RESTART_SOCCER_LEAGUE,
+			data: selectedLeague,
 		});
+		setIsTeamCardVisible(false);
 	}
 
 	function renderButton() {
-		if (matchWeek < 42) {
+		if (matchWeek < seasonLength) {
 			return (
 				<button
 					className="proceed-button success-green-hover text-white"
@@ -95,12 +97,12 @@ function TableDisplay({ setIsTeamCardVisible }) {
 				</button>
 			);
 		}
-		return null;
+		return <></>;
 	}
 
 	return (
 		<>
-			<h2>MatchWeek: {matchWeek}</h2>
+			<h2>Match Week: {matchWeek}</h2>
 
 			{renderButton()}
 			<button
@@ -114,16 +116,11 @@ function TableDisplay({ setIsTeamCardVisible }) {
 				<table className="league-table normal-text">
 					<thead key="league-table-header">
 						<tr>
-							{/* {tableHeaders.map((header, index) => (
-								<th key={"league-table-header" + index} title="">
-									{header}
-								</th>
-							))} */}
 							{Object.keys(tableHeaders).map((key, index) => {
 								if (key === "Team") {
 									return (
 										<th
-											colspan={2}
+											colSpan={2}
 											key={"league-table-header" + index}
 											title={tableHeaders[key]}
 										>

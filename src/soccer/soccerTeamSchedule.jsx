@@ -20,11 +20,11 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 
 	function returnMatchResult(goalsFor, goalsAway) {
 		if (goalsFor > goalsAway) {
-			return "success-green-hover";
+			return "success-light-green-hover";
 		} else if (goalsFor < goalsAway) {
-			return "error-red-hover";
+			return "error-light-red-hover";
 		} else {
-			return "null-gray-hover";
+			return "null-light-gray-hover";
 		}
 	}
 	function returnFormatedTeamData(match, teamName, teamInt) {
