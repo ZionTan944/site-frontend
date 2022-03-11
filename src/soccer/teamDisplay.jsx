@@ -13,19 +13,11 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 
 	const selectedTeam = useSelector((state) => state.soccerTeam.selectedTeam);
 	const teamData = useSelector((state) => state.soccerTeam.selectedTeamData);
-	const loading = useSelector((state) => state.soccerTeam.loading);
+	const loading = useSelector((state) => state.loader.loading);
 
 	const schedule = useSelector(
 		(state) => state.soccerTeam.selectedTeamSchedule
 	);
-
-	function setSelectedTeam(team) {
-		dispatch({
-			type: soccerActionTypes.SET_SELECTED_TEAM,
-			data: team,
-		});
-		setIsTeamCardVisible(true);
-	}
 
 	const cardHeaders = {
 		gp: "GP",
@@ -66,7 +58,7 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 			) {
 				selectedSchedule.unshift(schedule[index]);
 			}
-			if (selectedSchedule.length === 10) {
+			if (selectedSchedule.length >= 10) {
 				break;
 			}
 		}
@@ -80,14 +72,11 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 				{selectedSchedule.map((match) => {
 					return (
 						<div
-							key={match.opponent}
+							key={"against" + match.gf + ":" + match.ga + ":" + match.opponent}
 							className={
-								"card-data-row circle small-text text-centre " +
+								"card-data-row circle small-text element-centre " +
 								returnMatchResult(match.result)
 							}
-							onClick={() => {
-								setSelectedTeam(teamData[1]);
-							}}
 						>
 							{match.result}
 						</div>
@@ -159,6 +148,7 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 						schedule={schedule}
 						teamName={selectedTeam}
 						teamInt={teamData.team_int}
+						setIsTeamCardVisible={setIsTeamCardVisible}
 					/>
 				</div>
 			</div>

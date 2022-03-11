@@ -5,11 +5,12 @@
   051014
   c99efa */
 .active {
-	background-color: #9e89fc;
+	background-color: #898ed1;
 	color: #0b0c10;
 }
-.active:hover {
-	background-color: #8e76fc;
+.active:hover,
+.active-hover {
+	background-color: #8e93d4;
 	color: #0b0c10;
 }
 

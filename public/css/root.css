@@ -1,20 +1,23 @@
 @import "navBar.css";
 @import "soccerDash.css";
 @import "./common/colors.css";
+@import "descriptionBoard.css";
+
+html,
 body {
 	margin: 0;
 	font-size: 1em;
-	height: 100%;
 	background-color: #f9627d;
 	color: #0b0c10;
+	height: 100%;
 }
 
 /* Text */
 .extra-small-text {
-	font-size: 0.5em;
+	font-size: 0.75em;
 }
 .small-text {
-	font-size: 0.8em;
+	font-size: 1em;
 }
 .normal-text {
 	font-size: 1.2em;
@@ -29,31 +32,41 @@ body {
 /* Layout */
 .parent-div {
 	display: flex;
+	height: 100%;
+	width: 100%;
 }
 .left-child,
 .right-child {
+	height: 100%;
 	width: 50%;
-	overflow: auto;
 }
 .upper-child,
 .lower-child {
 	height: 50%;
 	overflow: auto;
 }
-.text-centre {
-	text-align: center;
+.display-even-split {
+	display: flex;
+	justify-content: space-between;
+}
+.element-centre {
 	justify-content: center;
 	align-items: center;
 }
-.text-right {
-	text-align: right;
+.element-right {
 	justify-content: right;
 	vertical-align: middle;
 	align-items: center;
 }
+.text-centre {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
 .text-left {
 	text-align: left;
-	vertical-align: middle;
 }
 .text-top {
 	vertical-align: top;
@@ -63,6 +76,13 @@ body {
 }
 .float-left {
 	float: left;
+}
+.float-centre {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 /* shapes */
 .circle {
@@ -93,4 +113,7 @@ body {
 	margin-top: 0.83em;
 	margin-bottom: 0.83em;
 	font-weight: bold;
+}
+.underline {
+	text-decoration: underline;
 }

@@ -1,11 +1,25 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
-function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
-	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
+import soccerActionTypes from "../actions/soccerActions";
 
-	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek, 5));
+function SoccerTeamSchedule({
+	schedule,
+	teamName,
+	teamInt,
+	setIsTeamCardVisible,
+}) {
+	const dispatch = useDispatch();
+	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
+	const seasonLength = useSelector((state) => state.soccerLeague.seasonLength);
+
+	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek, 0));
+
+	useEffect(() => {
+		setSelectedWeek(Math.max(matchWeek, 0));
+	}, [setSelectedWeek, matchWeek]);
+
 	function checkMatchStatus(match) {
 		if (match.opponent === "RES") {
 			return (
@@ -16,6 +30,13 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 			);
 		}
 		return true;
+	}
+	function setSelectedTeam(team) {
+		dispatch({
+			type: soccerActionTypes.SET_SELECTED_TEAM,
+			data: team,
+		});
+		setIsTeamCardVisible(true);
 	}
 
 	function returnMatchResult(goalsFor, goalsAway) {
@@ -79,6 +100,9 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 			<>
 				<td
 					className={"text-left team-name-table-data " + matchData.homeResult}
+					onClick={() => {
+						setSelectedTeam(matchData.homeTeamName);
+					}}
 				>
 					<img
 						className="team-logo-card"
@@ -92,6 +116,9 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 				{renderScoreLine(matchData)}
 				<td
 					className={"text-right team-name-table-data " + matchData.awayResult}
+					onClick={() => {
+						setSelectedTeam(matchData.awayTeamName);
+					}}
 				>
 					{matchData.awayTeamName}
 					<img
@@ -108,9 +135,12 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 	}
 
 	function renderTeamSchedule(schedule, matchWeek) {
-		let selectedSchedule = schedule.slice(0, 5);
-		if (matchWeek > 5) {
-			selectedSchedule = schedule.slice(matchWeek - 5, matchWeek);
+		let selectedSchedule = schedule.slice(matchWeek, matchWeek + 5);
+		if (seasonLength - matchWeek < 5) {
+			selectedSchedule = schedule.slice(
+				Math.min(matchWeek, seasonLength - 5),
+				Math.max(seasonLength, matchWeek)
+			);
 		}
 		return selectedSchedule.map((match, index) => {
 			return (
@@ -122,13 +152,15 @@ function SoccerTeamSchedule({ schedule, teamName, teamInt }) {
 	}
 
 	function renderUpcomingMatch(schedule, matchWeek) {
+		let selectedMatchWeek = matchWeek;
+
 		let nextMatch = "";
-		if (schedule.length === matchWeek) {
+		if (schedule.length === selectedMatchWeek) {
 			nextMatch = "End of Season";
-		} else if (schedule[matchWeek].opponent === "RES") {
+		} else if (schedule[selectedMatchWeek].opponent === "RES") {
 			nextMatch = "Next Week: No game scheduled";
 		} else {
-			nextMatch = "Next Week: " + schedule[matchWeek].opponent_name;
+			nextMatch = "Next Week: " + schedule[selectedMatchWeek].opponent_name;
 		}
 		return (
 			<>

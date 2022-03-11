@@ -4,7 +4,7 @@ const initState = {
 	leagueData: [],
 	matchWeek: 0,
 	leagueName: "",
-	matchResults: [],
+	matchResults: [[{}]],
 	seasonLength: 0,
 	leagueMeta: {},
 };
@@ -15,9 +15,9 @@ const soccerLeagueReducer = (state = initState, action) => {
 			...state,
 			leagueData: action.result.league_table,
 			matchWeek: action.result.match_week,
-			matchResults: [],
 			seasonLength: action.result.total_weeks,
 			leagueMeta: action.result.meta,
+			matchResults: action.result.match_results,
 		};
 	} else if (action.type === soccerActionTypes.SET_LEAGUE_DISPLAY) {
 		return {

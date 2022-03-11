@@ -8,15 +8,15 @@
 	width: 95%;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 1em;
 }
 
 .match-result-table:hover {
 	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
 }
 .match-card-header {
-	margin: 0.5em 0 0.5em 1em;
+	margin: 0.5em 1em 0.5em 1em;
 }
 .match-display-card {
-	margin-top: 7.5em;
-	margin-bottom: 5em;
+	margin-top: 5em;
 }

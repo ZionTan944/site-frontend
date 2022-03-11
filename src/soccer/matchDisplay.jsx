@@ -1,11 +1,19 @@
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import soccerActionTypes from "../actions/soccerActions";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 function MatchDisplay({ setIsTeamCardVisible }) {
 	const dispatch = useDispatch();
 
 	const matchResults = useSelector((state) => state.soccerLeague.matchResults);
 	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
+
+	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek, 0));
+
+	useEffect(() => {
+		setSelectedWeek(Math.max(matchWeek - 1, 0));
+	}, [setSelectedWeek, matchWeek]);
 
 	const matchHeaders = ["Home", "-", "VS", "-", "Away"];
 
@@ -27,6 +35,24 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 		}
 	}
 
+	function renderMatchPlayed(matchData) {
+		if (selectedWeek >= matchWeek) {
+			return (
+				<td className="text-centre" colSpan="3">
+					{" "}
+					Not Played
+				</td>
+			);
+		}
+		return (
+			<>
+				<td className="text-centre">{matchData.home_goals}</td>
+				<td className="text-centre">-</td>
+				<td className="text-centre">{matchData.away_goals}</td>
+			</>
+		);
+	}
+
 	function renderMatchTableForRow(matchData) {
 		return (
 			<>
@@ -46,9 +72,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 					/>
 					{matchData.home_team_name}
 				</td>
-				<td className="text-centre">{matchData.home_goals}</td>
-				<td className="text-centre">-</td>
-				<td className="text-centre">{matchData.away_goals}</td>
+				{renderMatchPlayed(matchData)}
 				<td
 					className={
 						"text-right team-name-table-data " +
@@ -59,7 +83,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 					{matchData.away_team_name}
 					<img
 						className="team-logo-card"
-						src={"soccer_images/" + matchData.home_team + ".png"}
+						src={"soccer_images/" + matchData.away_team + ".png"}
 						alt=""
 						height="15"
 						width="15"
@@ -70,19 +94,32 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 	}
 
 	function renderMatchTableData(matchData) {
+		if (matchData.away_team === "RES" || matchData.home_team === "RES") {
+			return null;
+		}
 		return (
-			<tr key={matchData.home_team} className="border">
+			<tr key={"Match" + matchData.home_team} className="border">
 				{renderMatchTableForRow(matchData)}
 			</tr>
 		);
 	}
-
-	if (Object.keys(matchResults).length === 0) {
-		return <div className="match-display-card"></div>;
-	}
 	return (
 		<div className="team-display-card match-display-card border">
-			<p className="match-card-header">Match Results: Week {matchWeek}</p>
+			<div className="display-even-split">
+				<BiLeftArrow
+					className="match-card-header"
+					onClick={() => setSelectedWeek(Math.max(selectedWeek - 1, 0))}
+				/>
+				<p className="match-card-header">
+					Match Schedule: Week {selectedWeek + 1}
+				</p>
+				<BiRightArrow
+					className="match-card-header"
+					onClick={() =>
+						setSelectedWeek(Math.min(selectedWeek + 1, matchResults.length - 1))
+					}
+				/>
+			</div>
 			<table className="match-result-table null-gray">
 				<thead>
 					<tr className="border">
@@ -92,7 +129,9 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 					</tr>
 				</thead>
 				<tbody>
-					{matchResults.map((matchData) => renderMatchTableData(matchData))}
+					{matchResults[Math.max(selectedWeek, 0)].map((matchData) =>
+						renderMatchTableData(matchData)
+					)}
 				</tbody>
 			</table>
 		</div>

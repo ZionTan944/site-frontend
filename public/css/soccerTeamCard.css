@@ -18,6 +18,7 @@
 	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
 	color: black;
 	border-radius: 1em;
+	margin-top: 7.5em;
 }
 
 .team-display-card:hover {
@@ -38,7 +39,7 @@
 	height: 1em;
 }
 .card-data-row {
-	margin: 0.3em;
+	margin: 0.25em;
 }
 .card-body-header {
 	margin: 0 0 0 1em;

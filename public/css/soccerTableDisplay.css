@@ -39,8 +39,7 @@
 .ranktoplevel {
 	color: rgb(201, 146, 6);
 }
-.ranktoplevel:hover,
-.ranktoplevel.End {
+.ranktoplevel:hover {
 	background-color: rgba(255, 183, 0, 0.7);
 	color: rgb(170, 122, 0);
 }
@@ -48,17 +47,23 @@
 .ranksecondlevel {
 	color: rgb(5, 180, 5);
 }
-
-.rankthirdlevel {
-	color: rgb(7, 7, 190);
+.ranksecondlevel:hover {
+	background-color: rgba(11, 197, 11, 0.7);
+	color: rgb(1, 126, 1);
 }
 
+.rankthirdlevel {
+	color: rgb(33, 33, 243);
+}
+.rankthirdlevel:hover {
+	background-color: rgba(66, 66, 247, 0.7);
+	color: rgb(4, 4, 156);
+}
 .rankrelegation {
 	color: rgb(255, 0, 0);
 }
 
-.rankrelegation:hover,
-.rankrelegation.End {
+.rankrelegation:hover {
 	color: rgb(134, 0, 0);
 	background-color: rgba(255, 0, 0, 0.7);
 }
