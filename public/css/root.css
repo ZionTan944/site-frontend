@@ -2,6 +2,7 @@
 @import "soccerDash.css";
 @import "./common/colors.css";
 @import "descriptionBoard.css";
+@import "progressBar.css";
 
 html,
 body {
@@ -10,6 +11,10 @@ body {
 	background-color: #f9627d;
 	color: #0b0c10;
 	height: 100%;
+}
+/* Spacing */
+.margin-none {
+	margin: 0 0 0 0;
 }
 
 /* Text */
@@ -30,19 +35,28 @@ body {
 }
 
 /* Layout */
+.display-flex-col {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.flex-child {
+	flex: 1;
+}
+
 .parent-div {
 	display: flex;
+	flex-wrap: wrap;
 	height: 100%;
 	width: 100%;
 }
 .left-child,
 .right-child {
-	height: 100%;
-	width: 50%;
+	flex-grow: 1;
+	align-self: stretch;
 }
 .upper-child,
 .lower-child {
-	height: 50%;
 	overflow: auto;
 }
 .display-even-split {
@@ -52,6 +66,7 @@ body {
 .element-centre {
 	justify-content: center;
 	align-items: center;
+	vertical-align: middle;
 }
 .element-right {
 	justify-content: right;
@@ -60,13 +75,15 @@ body {
 }
 .text-centre {
 	text-align: center;
+	vertical-align: middle;
 }
-
 .text-right {
 	text-align: right;
+	vertical-align: middle;
 }
 .text-left {
 	text-align: left;
+	vertical-align: middle;
 }
 .text-top {
 	vertical-align: top;
@@ -98,7 +115,10 @@ body {
 }
 .border-rounded {
 	border: 1px solid black;
-	border-radius: 10%;
+	border-radius: 5%;
+}
+.border-dash {
+	border: 1px dashed black;
 }
 
 /* Font */

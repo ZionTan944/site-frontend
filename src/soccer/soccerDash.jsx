@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import soccerActionTypes from "../actions/soccerActions";
 import { GiSoccerBall } from "react-icons/gi";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 import TableDisplay from "./tableDisplay";
 import TeamDisplay from "./teamDisplay";
@@ -31,7 +32,21 @@ function SoccerDash() {
 		if (isTeamCardVisible) {
 			return <TeamDisplay setIsTeamCardVisible={setIsTeamCardVisible} />;
 		}
-		return null;
+		return (
+			<div className="top-display-card team-display-card card-dark border flex-child">
+				<div className="team-display-card-header">
+					<h2 className="team-name">Team Info Card</h2>
+				</div>
+				<div className="card-body">
+					<div className="team-display-card-container border-dash text-centre">
+						<p>
+							<AiOutlineInfoCircle />
+							Select a team by clicking to view additional team information
+						</p>
+					</div>
+				</div>
+			</div>
+		);
 	}
 
 	return (
@@ -62,9 +77,22 @@ function SoccerDash() {
 						selectedLeague={selectedLeague}
 					/>
 				</div>
-				<div className="right-child">
+				<div className="right-child display-flex-col">
 					{renderTeamDisplay(isTeamCardVisible)}
 					<MatchDisplay setIsTeamCardVisible={setIsTeamCardVisible} />
+					<div className="team-display-card card-dark border flex-child">
+						<div className="team-display-card-header">
+							<h2 className="team-name">Team Info Card</h2>
+						</div>
+						<div className="card-body element-centre">
+							<div className="team-display-card-container border-dash text-centre">
+								<p>
+									<AiOutlineInfoCircle />
+									Select a team by clicking to view additional team information
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

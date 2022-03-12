@@ -47,6 +47,13 @@
 .error-red-hover:hover {
 	background-color: rgb(197, 0, 0);
 }
+.warning-yellow,
+.warning-yellow-hover {
+	background-color: rgb(255, 228, 75);
+}
+.warning-yellow-hover:hover {
+	background-color: rgb(216, 176, 0);
+}
 .null-gray,
 .null-gray-hover {
 	background-color: #aaaaaa;
@@ -74,4 +81,19 @@
 }
 .null-light-gray-hover:hover {
 	background-color: #9c9c9c;
+}
+.card-light {
+	background-color: rgba(255, 255, 255, 0.7);
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+}
+.card-light:hover {
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
+}
+
+.card-dark {
+	background-color: rgba(168, 166, 166, 0.9);
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+}
+.card-dark:hover {
+	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
 }

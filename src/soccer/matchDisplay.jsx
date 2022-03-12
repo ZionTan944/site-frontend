@@ -104,7 +104,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 		);
 	}
 	return (
-		<div className="team-display-card match-display-card border">
+		<div className="team-display-card card-light match-display-card border">
 			<div className="display-even-split">
 				<BiLeftArrow
 					className="match-card-header"

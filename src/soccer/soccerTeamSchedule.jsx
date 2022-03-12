@@ -14,11 +14,13 @@ function SoccerTeamSchedule({
 	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
 	const seasonLength = useSelector((state) => state.soccerLeague.seasonLength);
 
-	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek, 0));
+	const [selectedWeek, setSelectedWeek] = useState(
+		Math.min(Math.max(matchWeek, 1), seasonLength - 4)
+	);
 
 	useEffect(() => {
-		setSelectedWeek(Math.max(matchWeek, 0));
-	}, [setSelectedWeek, matchWeek]);
+		setSelectedWeek(Math.min(Math.max(matchWeek, 1), seasonLength - 4));
+	}, [setSelectedWeek, matchWeek, seasonLength]);
 
 	function checkMatchStatus(match) {
 		if (match.opponent === "RES") {
@@ -134,12 +136,15 @@ function SoccerTeamSchedule({
 		);
 	}
 
-	function renderTeamSchedule(schedule, matchWeek) {
-		let selectedSchedule = schedule.slice(matchWeek, matchWeek + 5);
-		if (seasonLength - matchWeek < 5) {
+	function renderTeamSchedule(schedule, selectedMatchWeek) {
+		let selectedSchedule = schedule.slice(
+			Math.max(selectedMatchWeek - 1, 0),
+			Math.max(selectedMatchWeek - 1, 0) + 5
+		);
+		if (seasonLength - selectedMatchWeek < 5) {
 			selectedSchedule = schedule.slice(
-				Math.min(matchWeek, seasonLength - 5),
-				Math.max(seasonLength, matchWeek)
+				Math.min(selectedMatchWeek - 1, seasonLength - 5),
+				seasonLength
 			);
 		}
 		return selectedSchedule.map((match, index) => {
@@ -151,16 +156,16 @@ function SoccerTeamSchedule({
 		});
 	}
 
-	function renderUpcomingMatch(schedule, matchWeek) {
-		let selectedMatchWeek = matchWeek;
+	function renderUpcomingMatch(schedule, selectedMatchWeek) {
+		let chosenMatchWeek = Math.max(selectedMatchWeek - 1, 1) + 5;
 
 		let nextMatch = "";
-		if (schedule.length === selectedMatchWeek) {
+		if (schedule.length === chosenMatchWeek) {
 			nextMatch = "End of Season";
-		} else if (schedule[selectedMatchWeek].opponent === "RES") {
+		} else if (schedule[chosenMatchWeek].opponent === "RES") {
 			nextMatch = "Next Week: No game scheduled";
 		} else {
-			nextMatch = "Next Week: " + schedule[selectedMatchWeek].opponent_name;
+			nextMatch = "Next Week: " + schedule[chosenMatchWeek].opponent_name;
 		}
 		return (
 			<>
@@ -169,7 +174,7 @@ function SoccerTeamSchedule({
 					<BiDownArrow
 						className="float-right"
 						onClick={() =>
-							setSelectedWeek(Math.min(selectedWeek + 1, schedule.length))
+							setSelectedWeek(Math.min(selectedWeek + 1, schedule.length - 4))
 						}
 					/>
 				</td>
@@ -190,7 +195,7 @@ function SoccerTeamSchedule({
 						<th className="border">
 							<BiUpArrow
 								className="float-right"
-								onClick={() => setSelectedWeek(Math.max(selectedWeek - 1, 5))}
+								onClick={() => setSelectedWeek(Math.max(selectedWeek - 1, 1))}
 							/>
 						</th>
 					</tr>

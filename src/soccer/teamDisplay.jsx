@@ -2,9 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import soccerActionTypes from "../actions/soccerActions";
 import { GiCancel } from "react-icons/gi";
+import { VscFlame } from "react-icons/vsc";
+import { WiSnowflakeCold } from "react-icons/wi";
 
 import { returnWithPlacingSuffix } from "../utils/utilFunctions";
 import SoccerTeamSchedule from "./soccerTeamSchedule";
+import ProgressBar from "../components/progressBar";
 
 function TeamDisplay({ setIsTeamCardVisible }) {
 	var dispatch = useDispatch();
@@ -72,9 +75,9 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 				{selectedSchedule.map((match) => {
 					return (
 						<div
-							key={"against" + match.gf + ":" + match.ga + ":" + match.opponent}
+							key={match.opponent + "@" + index}
 							className={
-								"card-data-row circle small-text element-centre " +
+								"card-data-row circle extra-small-text element-centre " +
 								returnMatchResult(match.result)
 							}
 						>
@@ -86,12 +89,27 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 		);
 	}
 
+	function renderTeamForm() {
+		let formIcons = [];
+		if (teamData.form >= 140) {
+			formIcons = [...Array(Math.floor((teamData.form - 140) / 10) + 1)];
+			return formIcons.map(() => {
+				return <VscFlame className="hot-icons form-icons large-text" />;
+			});
+		} else {
+			formIcons = [...Array(Math.floor((140 - teamData.form) / 10) + 1)];
+			return formIcons.map(() => {
+				return <WiSnowflakeCold className="cold-icons form-icons large-text" />;
+			});
+		}
+	}
+
 	if (Object.keys(teamData).length === 0 || loading) {
 		return null;
 	}
 	return (
 		<>
-			<div className="team-display-card border">
+			<div className="top-display-card team-display-card border card-light flex-child">
 				<div className="team-display-card-header">
 					<img
 						className="card-team-logo"
@@ -143,6 +161,16 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 							</div>
 						</div>
 					</div>
+					<div className="team-extra-info team-display-card-container">
+						<div className="team-extra-info-item">
+							Form: {teamData.form}
+							{renderTeamForm()}
+						</div>
+						<div className="team-extra-info-item">
+							Fitness: {<ProgressBar percentage={teamData.fitness} />}
+						</div>
+					</div>
+
 					<p className="card-body-header">Team Schedule:</p>
 					<SoccerTeamSchedule
 						schedule={schedule}

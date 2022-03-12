@@ -14,22 +14,28 @@
 .team-display-card {
 	display: inline-block;
 	width: 70%;
-	background-color: rgba(255, 255, 255, 0.7);
-	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
 	color: black;
 	border-radius: 1em;
+	margin-top: 5em;
+}
+.top-display-card {
 	margin-top: 7.5em;
 }
 
-.team-display-card:hover {
-	box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.5);
-}
-
 .team-display-card-container {
-	margin: 0 1em 1em 1em;
+	margin: 0 1em 0.5em 1em;
 	border: 1px solid black;
 	border-radius: 0.5em;
 	width: 90%;
+}
+.team-extra-info {
+	margin-left: 1em;
+	border: 1px solid black;
+	border-radius: 0.5em;
+	width: 90%;
+}
+.team-extra-info-item {
+	margin-left: 0.5em;
 }
 .team-schedule-table {
 	border-collapse: collapse;
@@ -49,4 +55,33 @@
 }
 .team-name-table-data {
 	width: 40%;
+}
+.hot-icons {
+	color: red;
+}
+.cold-icons {
+	color: blue;
+}
+
+.form-icons {
+	display: inline;
+	margin-right: -0.4em;
+}
+.form-icons:nth-child(1) {
+	z-index: 6;
+}
+.form-icons:nth-child(2) {
+	z-index: 5;
+}
+.form-icons:nth-child(3) {
+	z-index: 4;
+}
+.form-icons:nth-child(4) {
+	z-index: 3;
+}
+.form-icons:nth-child(5) {
+	z-index: 2;
+}
+.form-icons:nth-child(6) {
+	z-index: 1;
 }

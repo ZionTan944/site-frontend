@@ -1,0 +1,12 @@
+.progress-bar-container {
+	display: inline-block;
+	height: 1em;
+	width: 80%;
+	background-color: rgba(168, 166, 166, 0.9);
+	border-radius: 2em;
+	margin: 0.2em;
+}
+.progress-bar-inner {
+	height: 100%;
+	border-radius: inherit;
+}
