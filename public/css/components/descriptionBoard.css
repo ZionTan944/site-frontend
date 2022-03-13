@@ -1,0 +1,32 @@
+.pull-tab {
+	width: 10%;
+	padding: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom-left-radius: 15%;
+	border-bottom-right-radius: 15%;
+}
+
+.description {
+	width: 100%;
+	position: fixed;
+}
+
+.animate-enter {
+	transform: translate(0, -100vh);
+	position: absolute;
+}
+
+.animate-enter.animate-enter-active {
+	transform: translate(0, 0);
+	transition: all 400ms linear;
+}
+
+.animate-exit {
+	transform: translate(0, 0);
+}
+
+.animate-exit.animate-exit-active {
+	transform: translate(0, -100vh);
+	transition: all 500ms linear;
+}

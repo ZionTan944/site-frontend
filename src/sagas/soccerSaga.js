@@ -27,6 +27,7 @@ export function* getTeamData(request) {
 		method: "POST",
 		body: JSON.stringify({ team_name: request.data }),
 	}).then((response) => response.json());
+	console.log("a", data.schedule[0]);
 	yield put({ type: soccerActionTypes.SET_TEAM_DATA, result: data });
 }
 

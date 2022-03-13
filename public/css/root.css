@@ -1,8 +1,8 @@
-@import "navBar.css";
-@import "soccerDash.css";
+@import "./components/navBar.css";
+@import "./components/descriptionBoard.css";
+@import "./components/progressBar.css";
+@import "./soccer/soccerDash.css";
 @import "./common/colors.css";
-@import "descriptionBoard.css";
-@import "progressBar.css";
 
 html,
 body {
@@ -35,6 +35,9 @@ body {
 }
 
 /* Layout */
+.flex {
+	display: flex;
+}
 .display-flex-col {
 	display: flex;
 	flex-direction: column;
@@ -43,17 +46,23 @@ body {
 .flex-child {
 	flex: 1;
 }
-
+.flex-child-2 {
+	flex: 2;
+}
 .parent-div {
 	display: flex;
 	flex-wrap: wrap;
 	height: 100%;
 	width: 100%;
 }
-.left-child,
-.right-child {
+.flex-left-child,
+.flex-right-child {
 	flex-grow: 1;
 	align-self: stretch;
+}
+.left-child,
+.right-child {
+	width: 50%;
 }
 .upper-child,
 .lower-child {
@@ -87,6 +96,9 @@ body {
 }
 .text-top {
 	vertical-align: top;
+}
+.text-middle {
+	vertical-align: middle;
 }
 .float-right {
 	float: right;

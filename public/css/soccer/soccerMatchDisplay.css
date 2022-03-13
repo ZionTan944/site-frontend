@@ -1,3 +1,11 @@
+.match-display-card {
+	display: inline-block;
+	width: 70%;
+	color: black;
+	border-radius: 1em;
+	margin-top: 5em;
+}
+
 .match-result-table {
 	border-spacing: 10em;
 	border-collapse: collapse;

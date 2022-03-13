@@ -11,7 +11,11 @@
 	margin-left: 1em;
 	vertical-align: middle;
 }
+.card-body {
+	height: 80%;
+}
 .team-display-card {
+	min-height: 28em;
 	display: inline-block;
 	width: 70%;
 	color: black;
@@ -28,14 +32,17 @@
 	border-radius: 0.5em;
 	width: 90%;
 }
+
+.team-display-card-message {
+	height: 90%;
+	display: flex;
+}
+
 .team-extra-info {
 	margin-left: 1em;
 	border: 1px solid black;
 	border-radius: 0.5em;
 	width: 90%;
-}
-.team-extra-info-item {
-	margin-left: 0.5em;
 }
 .team-schedule-table {
 	border-collapse: collapse;
@@ -65,7 +72,7 @@
 
 .form-icons {
 	display: inline;
-	margin-right: -0.4em;
+	margin-right: -0.6em;
 }
 .form-icons:nth-child(1) {
 	z-index: 6;

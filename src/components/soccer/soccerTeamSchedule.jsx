@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
 
-import soccerActionTypes from "../actions/soccerActions";
+import soccerActionTypes from "../../actions/soccerActions";
 
 function SoccerTeamSchedule({
 	schedule,
@@ -113,7 +113,7 @@ function SoccerTeamSchedule({
 						height="15"
 						width="15"
 					/>
-					{matchData.homeTeamName}
+					{matchData.homeTeam}
 				</td>
 				{renderScoreLine(matchData)}
 				<td
@@ -122,7 +122,7 @@ function SoccerTeamSchedule({
 						setSelectedTeam(matchData.awayTeamName);
 					}}
 				>
-					{matchData.awayTeamName}
+					{matchData.awayTeam}
 					<img
 						className="team-logo-card"
 						src={"soccer_images/" + matchData.awayTeam + ".png"}

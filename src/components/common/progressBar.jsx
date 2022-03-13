@@ -1,4 +1,4 @@
-function ProgressBar({ percentage }) {
+function ProgressBar({ percentage, label }) {
 	function renderProgressBarColor(percentage) {
 		if (percentage < 40) {
 			return "error-red";
@@ -9,12 +9,13 @@ function ProgressBar({ percentage }) {
 		}
 	}
 	return (
-		<div className="progress-bar-container">
-			<div
-				className={"progress-bar-inner " + renderProgressBarColor(percentage)}
-				style={{ width: `${percentage}%` }}
-			>
-				{" "}
+		<div className="flex">
+			{label} :
+			<div className="progress-bar-container">
+				<div
+					className={"progress-bar-inner " + renderProgressBarColor(percentage)}
+					style={{ width: `${percentage}%` }}
+				></div>
 			</div>
 		</div>
 	);

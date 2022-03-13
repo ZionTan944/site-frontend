@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import soccerActionTypes from "../actions/soccerActions";
+import soccerActionTypes from "../../actions/soccerActions";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
 function MatchDisplay({ setIsTeamCardVisible }) {
@@ -70,7 +70,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 						height="15"
 						width="15"
 					/>
-					{matchData.home_team_name}
+					{matchData.home_team}
 				</td>
 				{renderMatchPlayed(matchData)}
 				<td
@@ -80,7 +80,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 					}
 					onClick={() => setSelectedTeam(matchData.away_team_name)}
 				>
-					{matchData.away_team_name}
+					{matchData.away_team}
 					<img
 						className="team-logo-card"
 						src={"soccer_images/" + matchData.away_team + ".png"}
@@ -104,7 +104,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 		);
 	}
 	return (
-		<div className="team-display-card card-light match-display-card border">
+		<div className="match-display-card card-light match-display-card border flex-child">
 			<div className="display-even-split">
 				<BiLeftArrow
 					className="match-card-header"

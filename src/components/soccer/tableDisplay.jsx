@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import soccerActionTypes from "../actions/soccerActions";
+import soccerActionTypes from "../../actions/soccerActions";
 
 function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 	var dispatch = useDispatch();

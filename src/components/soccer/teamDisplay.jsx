@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import soccerActionTypes from "../actions/soccerActions";
+import soccerActionTypes from "../../actions/soccerActions";
 import { GiCancel } from "react-icons/gi";
 import { VscFlame } from "react-icons/vsc";
 import { WiSnowflakeCold } from "react-icons/wi";
 
-import { returnWithPlacingSuffix } from "../utils/utilFunctions";
+import { returnWithPlacingSuffix } from "../../utils/utilFunctions";
 import SoccerTeamSchedule from "./soccerTeamSchedule";
-import ProgressBar from "../components/progressBar";
+import ProgressBar from "../common/progressBar";
 
 function TeamDisplay({ setIsTeamCardVisible }) {
 	var dispatch = useDispatch();
@@ -52,7 +52,25 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 		}
 	}
 
+	function returnMatchResultText(result, opponent_name) {
+		switch (result) {
+			case (result = "W"):
+				return `Won against ${opponent_name}`;
+			case (result = "L"):
+				return `Lost to ${opponent_name}`;
+			default:
+				return `Drew against ${opponent_name}`;
+		}
+	}
+
 	function renderLastTenMatches(schedule, matchWeek) {
+		if (matchWeek === 0) {
+			return (
+				<p className="last-matches-header">
+					Expected Position at end of season : {teamData.ex}
+				</p>
+			);
+		}
 		let selectedSchedule = [];
 		for (var index = matchWeek - 1; index >= 0; index--) {
 			if (
@@ -80,6 +98,7 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 								"card-data-row circle extra-small-text element-centre " +
 								returnMatchResult(match.result)
 							}
+							title={returnMatchResultText(match.result, match.opponent_name)}
 						>
 							{match.result}
 						</div>
@@ -109,7 +128,7 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 	}
 	return (
 		<>
-			<div className="top-display-card team-display-card border card-light flex-child">
+			<div className="top-display-card team-display-card border card-light flex-child-2">
 				<div className="team-display-card-header">
 					<img
 						className="card-team-logo"
@@ -124,50 +143,46 @@ function TeamDisplay({ setIsTeamCardVisible }) {
 						onClick={() => setIsTeamCardVisible(false)}
 					/>
 				</div>
-				<div className="card-body">
+				<div>
 					<div className="team-display-card-container">
 						<div className="team-display-card-info">
 							<div className="parent-div card-data-row">
-								<div className="left-child">
+								<div className="flex-left-child">
 									{cardHeaders.place}:
 									{returnWithPlacingSuffix(teamData.place.toString())}
 								</div>
-								<div className="right-child">
+								<div className="flex-right-child">
 									{cardHeaders.w}: {teamData.w}
 								</div>
-								<div className="right-child">
+								<div className="flex-right-child">
 									{cardHeaders.d}: {teamData.d}
 								</div>
-								<div className="left-child">
+								<div className="flex-left-child">
 									{cardHeaders.l}: {teamData.l}
 								</div>
 							</div>
 							<div className="parent-div card-data-row">
-								<div className="left-child">
+								<div className="flex-left-child">
 									{cardHeaders.gp}: {teamData.gp}
 								</div>
-								<div className="right-child">
+								<div className="flex-right-child">
 									{cardHeaders.gf}: {teamData.gf}
 								</div>
-								<div className="left-child">
+								<div className="flex-left-child">
 									{cardHeaders.ga}: {teamData.ga}
 								</div>
-								<div className="right-child">
+								<div className="flex-right-child">
 									{cardHeaders.gd}: {teamData.gd}
 								</div>
 							</div>
 							<div className="card-data-row">
+								<ProgressBar percentage={teamData.fitness} label={"Fitness"} />
+							</div>
+							<div className="card-data-row">Form: {renderTeamForm()}</div>
+
+							<div className="card-data-row">
 								{renderLastTenMatches(schedule, matchWeek)}
 							</div>
-						</div>
-					</div>
-					<div className="team-extra-info team-display-card-container">
-						<div className="team-extra-info-item">
-							Form: {teamData.form}
-							{renderTeamForm()}
-						</div>
-						<div className="team-extra-info-item">
-							Fitness: {<ProgressBar percentage={teamData.fitness} />}
 						</div>
 					</div>
 
