@@ -1,0 +1,19 @@
+.project-card {
+	min-height: 15em;
+	display: inline-block;
+	width: 40%;
+	color: black;
+	border-radius: 1em;
+	margin-top: 5em;
+	margin-left: 2em;
+}
+
+.project-title {
+	width: 90%;
+	border-bottom: 2px solid black;
+}
+
+.project-description {
+	width: 90%;
+	margin-left: 2em;
+}

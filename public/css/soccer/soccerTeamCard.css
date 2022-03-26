@@ -15,27 +15,11 @@
 	height: 80%;
 }
 .team-display-card {
-	min-height: 28em;
+	height: 23em;
 	display: inline-block;
-	width: 70%;
+	width: 90%;
 	color: black;
 	border-radius: 1em;
-	margin-top: 5em;
-}
-.top-display-card {
-	margin-top: 7.5em;
-}
-
-.team-display-card-container {
-	margin: 0 1em 0.5em 1em;
-	border: 1px solid black;
-	border-radius: 0.5em;
-	width: 90%;
-}
-
-.team-display-card-message {
-	height: 90%;
-	display: flex;
 }
 
 .team-extra-info {
@@ -49,10 +33,10 @@
 }
 .team-schedule-row {
 	border: 1px solid black;
-	height: 1em;
+	height: 0.75em;
 }
 .card-data-row {
-	margin: 0.25em;
+	margin-left: 0.25em;
 }
 .card-body-header {
 	margin: 0 0 0 1em;

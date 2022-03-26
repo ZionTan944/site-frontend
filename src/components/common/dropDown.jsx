@@ -12,7 +12,7 @@ function Dropdown({ name, setActive, isActive }) {
 				<Link
 					to="/soccer"
 					className="nav-link main-color-hover border"
-					onClick={() => setActive(2)}
+					onClick={() => setActive("/soccer")}
 				>
 					Soccer
 				</Link>

@@ -4,6 +4,7 @@ import Dropdown from "./dropDown";
 
 function NavBar({ active, setActive }) {
 	const path = useLocation().pathname;
+
 	function returnIsActive(value) {
 		if (value === active) {
 			return "active";
@@ -27,7 +28,7 @@ function NavBar({ active, setActive }) {
 					/>
 				</Link>
 			</li>
-			<li className="nav-item" key="Home" onClick={() => setActive(1)}>
+			<li className="nav-item" key="Home" onClick={() => setActive("/")}>
 				<Link to="/" className={"nav-link " + returnIsActive("/")}>
 					Home
 				</Link>

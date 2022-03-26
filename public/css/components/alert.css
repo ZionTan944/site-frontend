@@ -1,0 +1,18 @@
+.alert-container {
+	width: 15%;
+	padding: 0.5em;
+	background-color: white;
+	margin-top: 7em;
+	margin-right: 3em;
+}
+.alert-item {
+	margin: 1em;
+}
+.alert-screen {
+	width: 100%;
+	position: fixed;
+	z-index: 3;
+}
+.alert-message {
+	margin-left: 0.25em;
+}

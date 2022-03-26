@@ -1,7 +1,7 @@
 import ClipLoader from "react-spinners/ClipLoader";
 import RotateLoader from "react-spinners/RotateLoader";
 
-function Spinner({ type, isLoading }) {
+function Spinner({ type, isLoading, text = "" }) {
 	function selectSpinner(type) {
 		if (type === "clip") {
 			return <ClipLoader />;
@@ -10,7 +10,12 @@ function Spinner({ type, isLoading }) {
 		}
 	}
 	if (isLoading) {
-		return <div className="float-centre">{selectSpinner(type)}</div>;
+		return (
+			<div className="float-centre display-flex-col full-height">
+				{selectSpinner(type)}
+				<p className="margin-none">{text}</p>
+			</div>
+		);
 	}
 	return <></>;
 }

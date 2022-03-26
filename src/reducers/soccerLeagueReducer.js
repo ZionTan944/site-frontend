@@ -7,6 +7,8 @@ const initState = {
 	matchResults: [[{}]],
 	seasonLength: 0,
 	leagueMeta: {},
+	extraStats: {},
+	tableHistory: [],
 };
 
 const soccerLeagueReducer = (state = initState, action) => {
@@ -25,6 +27,8 @@ const soccerLeagueReducer = (state = initState, action) => {
 			leagueData: action.result.league_table,
 			matchWeek: action.result.match_week,
 			matchResults: action.result.match_results,
+			extraStats: action.result.extra_stats,
+			tableHistory: action.result.table_history,
 		};
 	} else {
 		return { ...state };

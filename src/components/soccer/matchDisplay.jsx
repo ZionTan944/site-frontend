@@ -1,29 +1,18 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import soccerActionTypes from "../../actions/soccerActions";
+import { useSelector } from "react-redux";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 
-function MatchDisplay({ setIsTeamCardVisible }) {
-	const dispatch = useDispatch();
-
+function MatchDisplay({ setTeamForCard }) {
 	const matchResults = useSelector((state) => state.soccerLeague.matchResults);
 	const matchWeek = useSelector((state) => state.soccerLeague.matchWeek);
 
-	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek, 0));
+	const [selectedWeek, setSelectedWeek] = useState(Math.max(matchWeek - 1, 0));
 
 	useEffect(() => {
 		setSelectedWeek(Math.max(matchWeek - 1, 0));
 	}, [setSelectedWeek, matchWeek]);
 
 	const matchHeaders = ["Home", "-", "VS", "-", "Away"];
-
-	function setSelectedTeam(team) {
-		dispatch({
-			type: soccerActionTypes.SET_SELECTED_TEAM,
-			data: team,
-		});
-		setIsTeamCardVisible(true);
-	}
 
 	function returnMatchResult(goalsFor, goalsAway) {
 		if (goalsFor > goalsAway) {
@@ -61,7 +50,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 						"text-left team-name-table-data " +
 						returnMatchResult(matchData.home_goals, matchData.away_goals)
 					}
-					onClick={() => setSelectedTeam(matchData.home_team_name)}
+					onClick={() => setTeamForCard(matchData.home_team_name)}
 				>
 					<img
 						className="team-logo-card"
@@ -70,7 +59,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 						height="15"
 						width="15"
 					/>
-					{matchData.home_team}
+					{matchData.home_team_name}
 				</td>
 				{renderMatchPlayed(matchData)}
 				<td
@@ -78,9 +67,9 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 						"text-right team-name-table-data " +
 						returnMatchResult(matchData.away_goals, matchData.home_goals)
 					}
-					onClick={() => setSelectedTeam(matchData.away_team_name)}
+					onClick={() => setTeamForCard(matchData.away_team_name)}
 				>
-					{matchData.away_team}
+					{matchData.away_team_name}
 					<img
 						className="team-logo-card"
 						src={"soccer_images/" + matchData.away_team + ".png"}
@@ -104,7 +93,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 		);
 	}
 	return (
-		<div className="match-display-card card-light match-display-card border flex-child">
+		<div className="match-display-card top-layer-card card-light border">
 			<div className="display-even-split">
 				<BiLeftArrow
 					className="match-card-header"
@@ -120,7 +109,7 @@ function MatchDisplay({ setIsTeamCardVisible }) {
 					}
 				/>
 			</div>
-			<table className="match-result-table null-gray">
+			<table className="match-result-table null-gray small-text flex-basis-eighty">
 				<thead>
 					<tr className="border">
 						{matchHeaders.map((header, index) => (

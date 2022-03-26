@@ -149,7 +149,7 @@ function SoccerTeamSchedule({
 		}
 		return selectedSchedule.map((match, index) => {
 			return (
-				<tr key={index} className="text-centre team-schedule-row">
+				<tr key={index} className="text-centre team-schedule-row small-text">
 					{renderTeamScheduleForRow(match)}
 				</tr>
 			);
@@ -184,7 +184,7 @@ function SoccerTeamSchedule({
 
 	return (
 		<>
-			<table className="team-display-card-container team-schedule-table">
+			<table className="display-card-container team-schedule-table small-text">
 				<thead key="team-schedule">
 					<tr className="null-gray team-schedule-row">
 						<th>Home</th>

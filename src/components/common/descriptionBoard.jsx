@@ -25,7 +25,7 @@ function DescriptionBoard({ isBoardShown, setIsBoardShown, children }) {
 				<div>
 					<div className="active-hover">{children}</div>
 					<div
-						className="pull-tab text-centre active"
+						className="pull-tab float-right text-centre active"
 						onClick={() => setIsBoardShownTimeout(!isBoardShown)}
 					>
 						<IoMdArrowDropupCircle /> Close
@@ -34,7 +34,7 @@ function DescriptionBoard({ isBoardShown, setIsBoardShown, children }) {
 			</CSSTransition>
 			{renderButton ? (
 				<div
-					className="pull-tab text-centre active"
+					className="pull-tab float-right text-centre active"
 					onClick={() => {
 						setIsBoardShown(!isBoardShown);
 						setRenderButton(false);

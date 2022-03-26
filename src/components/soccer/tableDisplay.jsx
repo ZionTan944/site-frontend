@@ -1,7 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import soccerActionTypes from "../../actions/soccerActions";
 
-function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
+function TableDisplay({
+	setIsTeamCardVisible,
+	selectedLeague,
+	setTeamForCard,
+}) {
 	var dispatch = useDispatch();
 
 	const tableData = useSelector((state) => state.soccerLeague.leagueData);
@@ -23,13 +27,7 @@ function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 		Points: "Points",
 		"-": "Team Movement",
 	};
-	function setSelectedTeam(team) {
-		dispatch({
-			type: soccerActionTypes.SET_SELECTED_TEAM,
-			data: team,
-		});
-		setIsTeamCardVisible(true);
-	}
+
 	function renderLeagueDataForRow(teamData) {
 		return Object.keys(tableHeaders).map((key, i) => {
 			if (key === "") {
@@ -39,8 +37,8 @@ function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 							className="team-logo-card"
 							src={"soccer_images/" + teamData["Logo"] + ".png"}
 							alt=""
-							height="40"
-							width="40"
+							height="30"
+							width="30"
 						/>
 					</td>
 				);
@@ -69,7 +67,7 @@ function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 				className={
 					"league-table-row " + returnLeagueHoverClass(teamData.Placing)
 				}
-				onClick={() => setSelectedTeam(teamData["Team Name"])}
+				onClick={() => setTeamForCard(teamData["Team Name"])}
 			>
 				{renderLeagueDataForRow(teamData)}
 			</tr>
@@ -104,7 +102,7 @@ function TableDisplay({ setIsTeamCardVisible, selectedLeague }) {
 
 	return (
 		<>
-			<h2>Current Match Week: {matchWeek}</h2>
+			<h2 className="match-count-header">Current Match Week: {matchWeek}</h2>
 
 			{renderButton()}
 			<button

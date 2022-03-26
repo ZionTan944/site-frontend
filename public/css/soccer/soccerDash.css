@@ -8,9 +8,6 @@
 	cursor: default;
 	/* min-height: 100%; */
 }
-h2 {
-	margin-left: 1em;
-}
 
 .soccer-select {
 	background: transparent;
@@ -19,7 +16,7 @@ h2 {
 .soccer-header {
 	display: inline-block;
 	margin-left: 0.8em;
-	margin-top: 1em;
+	margin-top: 0em;
 }
 .soccer-desc-list {
 	margin-left: 2em;
@@ -30,5 +27,9 @@ h2 {
 }
 .soccer-desc-header {
 	margin-left: 0.5em;
+	padding: 0.25em;
 	padding-top: 0.5em;
+}
+.team-card-row {
+	margin-top: 3em;
 }

@@ -1,0 +1,34 @@
+.text-centre {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.text-left {
+	text-align: left;
+}
+.text-top {
+	vertical-align: top;
+}
+.text-middle {
+	vertical-align: middle;
+}
+.text-bottom {
+	vertical-align: bottom;
+}
+/* Text Size*/
+.extra-small-text {
+	font-size: 0.75em;
+}
+.small-text {
+	font-size: 0.9em;
+}
+.normal-text {
+	font-size: 1.1em;
+}
+.large-text {
+	font-size: 1.5em;
+}
+.text-white {
+	color: white;
+}

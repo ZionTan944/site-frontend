@@ -25,9 +25,8 @@ export function* restartSoccerLeague(request) {
 export function* getTeamData(request) {
 	const data = yield fetch(apiUrl + "soccer_league/get_team", {
 		method: "POST",
-		body: JSON.stringify({ team_name: request.data }),
+		body: JSON.stringify({ team_names: request.data }),
 	}).then((response) => response.json());
-	console.log("a", data.schedule[0]);
 	yield put({ type: soccerActionTypes.SET_TEAM_DATA, result: data });
 }
 

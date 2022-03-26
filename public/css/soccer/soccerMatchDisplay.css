@@ -1,11 +1,13 @@
 .match-display-card {
-	display: inline-block;
-	width: 70%;
+	width: 90%;
 	color: black;
 	border-radius: 1em;
+	margin-bottom: 5em;
+}
+.top-layer-card {
+	margin: 0.25em;
 	margin-top: 5em;
 }
-
 .match-result-table {
 	border-spacing: 10em;
 	border-collapse: collapse;
@@ -24,7 +26,4 @@
 }
 .match-card-header {
 	margin: 0.5em 1em 0.5em 1em;
-}
-.match-display-card {
-	margin-top: 5em;
 }

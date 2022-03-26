@@ -1,26 +1,29 @@
 import soccerActionTypes from "../actions/soccerActions";
 
 const initState = {
-	loading: false,
+	soccerLoading: false,
+	soccerTeamLoading: false,
 };
 const loadingReducer = (state = initState, action) => {
 	if (
 		[
-			soccerActionTypes.SET_TEAM_DATA,
 			soccerActionTypes.SET_SELECTED_TEAM,
 			soccerActionTypes.SET_LEAGUE_DISPLAY,
 			soccerActionTypes.SET_LEAGUE_DISPLAY_INIT,
 		].includes(action.type)
 	) {
-		return { loading: false };
+		return { ...state, soccerLoading: false };
+	} else if (action.type === soccerActionTypes.SET_TEAM_DATA) {
+		return { ...state, soccerTeamLoading: false };
 	} else if (
 		[
 			soccerActionTypes.RUN_SOCCER_LEAGUE,
 			soccerActionTypes.RESTART_SOCCER_LEAGUE,
-			soccerActionTypes.GET_TEAM_DATA,
 		].includes(action.type)
 	) {
-		return { loading: true };
+		return { ...state, soccerLoading: true };
+	} else if (action.type === soccerActionTypes.GET_TEAM_DATA) {
+		return { ...state, soccerTeamLoading: true };
 	} else {
 		return { ...state };
 	}

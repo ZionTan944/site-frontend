@@ -1,39 +1,98 @@
 @import "./components/navBar.css";
 @import "./components/descriptionBoard.css";
 @import "./components/progressBar.css";
+@import "./components/dashBoard.css";
+@import "./components/alert.css";
+
 @import "./soccer/soccerDash.css";
 @import "./common/colors.css";
+@import "./common/text.css";
 
 html,
-body {
+body,
+#root,
+.App {
 	margin: 0;
 	font-size: 1em;
 	background-color: #f9627d;
 	color: #0b0c10;
 	height: 100%;
+	width: 100%;
 }
 /* Spacing */
 .margin-none {
 	margin: 0 0 0 0;
 }
-
-/* Text */
-.extra-small-text {
-	font-size: 0.75em;
+.padding-none {
+	padding: 0 0 0 0;
 }
-.small-text {
-	font-size: 1em;
+.full-width {
+	width: 100%;
 }
-.normal-text {
-	font-size: 1.2em;
+.full-height {
+	height: 100%;
 }
-.large-text {
-	font-size: 1.5em;
+.display-card-header {
+	margin: 0.25em 0 0.25em 1em;
 }
-.text-white {
-	color: white;
+.display-card {
+	display: block;
+	width: 85%;
+	color: black;
+	border-radius: 1em;
 }
-
+.display-card-container {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	border: 1px solid black;
+	border-radius: 0.5em;
+	width: 90%;
+}
+.display-card-message {
+	height: 90%;
+	display: flex;
+}
+.flex-basis-five {
+	flex-basis: 5%;
+}
+.flex-basis-ten {
+	flex-basis: 10%;
+}
+.flex-basis-twenty {
+	flex-basis: 20%;
+}
+.flex-basis-quarter {
+	flex-basis: 25%;
+}
+.flex-basis-thirty {
+	flex-basis: 30%;
+}
+.flex-basis-forty {
+	flex-basis: 40%;
+}
+.flex-basis-half {
+	flex-basis: 50%;
+}
+.flex-basis-sixty {
+	flex-basis: 60%;
+}
+.flex-basis-seventy {
+	flex-basis: 70%;
+}
+.flex-basis-3quarter {
+	flex-basis: 70%;
+}
+.flex-basis-eighty {
+	flex-basis: 80%;
+}
+.flex-basis-ninety {
+	flex-basis: 90%;
+}
+.flex-basis-full {
+	flex-basis: 100%;
+}
 /* Layout */
 .flex {
 	display: flex;
@@ -43,26 +102,20 @@ body {
 	flex-direction: column;
 	flex-wrap: wrap;
 }
-.flex-child {
-	flex: 1;
-}
-.flex-child-2 {
-	flex: 2;
+.display-flex-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 .parent-div {
 	display: flex;
-	flex-wrap: wrap;
-	height: 100%;
-	width: 100%;
+	flex-direction: row;
+	flex-basis: 100%;
 }
 .flex-left-child,
 .flex-right-child {
 	flex-grow: 1;
 	align-self: stretch;
-}
-.left-child,
-.right-child {
-	width: 50%;
 }
 .upper-child,
 .lower-child {
@@ -71,6 +124,11 @@ body {
 .display-even-split {
 	display: flex;
 	justify-content: space-between;
+}
+.display-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .element-centre {
 	justify-content: center;
@@ -82,24 +140,7 @@ body {
 	vertical-align: middle;
 	align-items: center;
 }
-.text-centre {
-	text-align: center;
-	vertical-align: middle;
-}
-.text-right {
-	text-align: right;
-	vertical-align: middle;
-}
-.text-left {
-	text-align: left;
-	vertical-align: middle;
-}
-.text-top {
-	vertical-align: top;
-}
-.text-middle {
-	vertical-align: middle;
-}
+
 .float-right {
 	float: right;
 }
@@ -107,9 +148,6 @@ body {
 	float: left;
 }
 .float-centre {
-	height: 100vh;
-	width: 100vw;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
