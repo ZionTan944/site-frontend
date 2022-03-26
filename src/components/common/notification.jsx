@@ -18,8 +18,6 @@ function Notification() {
 	}
 	useEffect(() => {
 		if (showAlert === true) {
-			console.log("a");
-
 			setTimeout(function () {
 				dispatch({
 					type: commonActionTypes.RESET_ALERT,
